@@ -43,9 +43,12 @@
   <style>
     html {
       height: 100%;
+      touch-action: manipulation;
     }
 
     body {
+      -webkit-touch-callout:none;
+      -webkit-user-select:none;
       height: 100%;
       margin: 0;
       font-family: "MS Pゴシック" ;
@@ -63,8 +66,8 @@
       vuetify: new Vuetify(),
       el: "#app",
       data: {
-        count: 1,
-        text: "ウホ",
+        count: 2,
+        text: "ウホウホ",
         icon: "🦊🐰",
       },
       methods: {
