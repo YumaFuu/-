@@ -38,32 +38,32 @@
           </div>
         </v-card>
 
+        <v-dialog
+          v-model="dialog"
+          width="500"
+          persistent
+        >
+
+          <v-card>
+            <v-card-text class="text-h5 py-7">
+              {{ dialogMessage }}
+            </v-card-text>
+
+            <v-divider></v-divider>
+
+            <v-card-actions>
+              <v-spacer></v-spacer>
+              <v-btn
+                @click="close()"
+                grey
+                outlined
+              >
+              ウホッ❤︎
+              </v-btn>
+            </v-card-actions>
+          </v-card>
+        </v-dialog>
       </template>
-
-    <v-dialog
-      v-model="dialog"
-      width="500"
-    >
-
-      <v-card>
-        <v-card-text class="text-h5 py-7">
-          ドーーーーーン
-        </v-card-text>
-
-        <v-divider></v-divider>
-
-        <v-card-actions>
-          <v-spacer></v-spacer>
-          <v-btn
-            @click="close()"
-            grey
-            outlined
-          >
-          ウホッ❤︎
-          </v-btn>
-        </v-card-actions>
-      </v-card>
-    </v-dialog>
     </v-app>
   </body>
 
@@ -99,12 +99,12 @@
         disabled: false,
         loading: false,
         dialog: false,
+        dialogMessage: "ドーーーーーン",
       },
       methods: {
         async increment() {
           this.count++
           const _sleep = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
-
 
           if ( this.count > 10 ) {
             this.disabled = true
