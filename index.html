@@ -14,11 +14,7 @@
   <body>
     <v-app id="app">
       <template>
-
-        <v-card
-          flat
-          class="fullheight"
-        >
+        <div class="fullheight">
           <div
             class="d-flex flex-column align-center justify-center fullheight"
           >
@@ -26,43 +22,27 @@
               {{ icon }}{{ text }}{{ icon }}
             </h1>
 
-            <v-btn
-              @click="increment()"
-              outlined
-              large
-              :disabled="disabled"
-              :loading="loading"
-            >
-              🦍
-            </v-btn>
-          </div>
-        </v-card>
-
-        <v-dialog
-          v-model="dialog"
-          width="500"
-          persistent
-        >
-
-          <v-card>
-            <v-card-text class="text-h5 py-7">
-              {{ dialogMessage }}
-            </v-card-text>
-
-            <v-divider></v-divider>
-
-            <v-card-actions>
-              <v-spacer></v-spacer>
+            <div class="pt-4">
               <v-btn
-                @click="close()"
-                grey
+                @click="anya()"
                 outlined
+                large
+                :disabled="disabled"
               >
-              ウホッ❤︎
+                ピーナッツ好き？
               </v-btn>
-            </v-card-actions>
-          </v-card>
-        </v-dialog>
+            </div>
+            <div class="pt-4">
+              <v-img
+                :src="src"
+                min-width="250"
+                min-height="400"
+                aspect-ratio="1"
+              />
+            </div>
+          </div>
+        </div>
+
       </template>
     </v-app>
   </body>
@@ -93,32 +73,35 @@
       vuetify: new Vuetify(),
       el: "#app",
       data: {
-        count: 2,
-        text: "ウホウホ",
+        text: "ゴリラ軍本部",
         icon: "🦊🐰",
+        images: [
+          "https://user-images.githubusercontent.com/32477095/171662044-004bbad4-fac4-4dbd-b270-4cbacb0b97f0.png",
+          "https://user-images.githubusercontent.com/32477095/171662061-630a6145-3f3d-4df5-b3f1-d02c335ef9f7.png",
+          "https://user-images.githubusercontent.com/32477095/171662044-004bbad4-fac4-4dbd-b270-4cbacb0b97f0.png",
+          "https://user-images.githubusercontent.com/32477095/171662061-630a6145-3f3d-4df5-b3f1-d02c335ef9f7.png",
+          "https://user-images.githubusercontent.com/32477095/171662044-004bbad4-fac4-4dbd-b270-4cbacb0b97f0.png",
+          "https://user-images.githubusercontent.com/32477095/171662061-630a6145-3f3d-4df5-b3f1-d02c335ef9f7.png",
+          "https://user-images.githubusercontent.com/32477095/171662065-42da7804-9a51-4618-8ad4-043613b1ab39.png",
+        ],
         disabled: false,
-        loading: false,
-        dialog: false,
-        dialogMessage: "ドーーーーーン",
+        src: "",
       },
       methods: {
-        async increment() {
-          this.count++
+        async anya() {
           const _sleep = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
 
-          if ( this.count > 10 ) {
-            this.disabled = true
-            this.loading = true
-            await _sleep(4000);
-            this.dialog = true
+          this.disabled = true
+
+          for ( const img of this.images ) {
+            this.src = img
+            console.log(img)
+            await _sleep(1000)
           }
-          this.text = "ウホ".repeat(this.count)
-        },
-        close() {
-          this.count = 2
+
+          await _sleep(1000)
           this.disabled = false
-          this.loading = false
-          this.dialog = false
+          this.src = ""
         },
       }
     })
